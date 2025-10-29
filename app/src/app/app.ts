@@ -4,8 +4,8 @@ import { Component, signal } from '@angular/core';
   selector: 'app-root',
   imports: [],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('app');
+  protected readonly title = signal('My Dream Job: Software Developer');
 }

@@ -1,0 +1,108 @@
+/* Component styles for presentation slides */
+:host,
+.presentation-root {
+  /* Host or .presentation-root is the horizontal scroll container for slides */
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide native horizontal scrollbar but keep scroll functionality */
+.presentation-root {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.presentation-root::-webkit-scrollbar {
+  height: 0; /* hide horizontal scrollbar in webkit */
+  display: none;
+}
+
+/* Ensure snap works across the app */
+.slide {
+  scroll-snap-align: start;
+  /* Each slide is viewport width and height and doesn't shrink */
+  flex: 0 0 100%;
+  min-width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  display: block;
+  /* allow vertical scrolling inside each slide so mobile content isn't cut */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.slide .slide-inner {
+  /* inner container to keep content centered */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem 2rem; /* less top padding (header removed) */
+}
+
+/* Mobile tweaks: make inner padding a bit smaller so text wraps nicely */
+@media (max-width: 767px) {
+  .slide .slide-inner {
+    padding: 1.25rem 1rem 3rem;
+  }
+  /* ensure slides don't force extra horizontal overflow on small screens */
+  .slide {
+    min-width: 100%;
+  }
+}
+
+/* Make prose inherit color so Tailwind text colors apply inside prose */
+.prose {
+  color: inherit;
+}
+
+/* Image placeholder styling */
+.image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 0.5rem;
+}
+
+/* Mobile bottom navigation (visible on small screens) */
+.mobile-nav {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.4rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(6px);
+  z-index: 50;
+}
+.mobile-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 36px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+.mobile-nav a:active {
+  transform: translateY(1px);
+}
+
+/* Desktop header tweaks */
+header h1 {
+  letter-spacing: -0.5px;
+}
+
+/* Small helpers */
+.pill-card {
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+}
