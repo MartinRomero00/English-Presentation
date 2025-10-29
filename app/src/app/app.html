@@ -1,11 +1,12 @@
 <!-- Presentation layout for "My Dream Job: Software Developer" -->
-<div class="presentation-root bg-white text-slate-900">
+<div #presentationRoot class="presentation-root bg-white text-slate-900">
   <!-- Slides: each section is a horizontal slide. Header removed per request. -->
   <section
-    id="intro"
     class="slide snap-start min-h-screen grid md:grid-cols-3 gap-8 items-start bg-gradient-to-br from-indigo-600 to-indigo-800 text-white py-16"
   >
-    <div class="slide-inner max-w-6xl mx-auto px-4 md:grid md:grid-cols-3 gap-8 items-start">
+    <div
+      class="slide-inner max-w-6xl mx-auto px-4 md:grid md:grid-cols-3 gap-8 items-start md:text-center"
+    >
       <div class="md:col-span-2">
         <h2 class="text-2xl md:text-3xl font-bold mb-4">Introduction</h2>
         <p class="leading-relaxed mb-4">
@@ -82,10 +83,9 @@
   </section>
 
   <section
-    id="advantages"
     class="slide snap-start min-h-screen py-16 bg-gradient-to-br from-emerald-500 to-emerald-700 text-white"
   >
-    <div class="slide-inner max-w-6xl mx-auto px-4">
+    <div class="slide-inner max-w-6xl mx-auto px-4 md:text-center">
       <h2 class="text-2xl font-bold mb-6">Advantages of This Career</h2>
       <ul class="grid md:grid-cols-2 gap-6 text-white">
         <li class="bg-white/10 p-6 rounded-lg shadow-lg">
@@ -117,10 +117,9 @@
   </section>
 
   <section
-    id="disadvantages"
     class="slide snap-start min-h-screen py-16 bg-gradient-to-br from-rose-500 to-rose-700 text-white"
   >
-    <div class="slide-inner max-w-4xl mx-auto px-4">
+    <div class="slide-inner max-w-4xl mx-auto px-4 md:text-center">
       <h2 class="text-2xl font-bold mb-4">Disadvantages of This Career</h2>
       <ul class="list-disc list-inside space-y-4">
         <li>
@@ -152,10 +151,9 @@
   </section>
 
   <section
-    id="qualities"
     class="slide snap-start min-h-screen py-16 bg-gradient-to-br from-teal-400 to-teal-600 text-slate-900"
   >
-    <div class="slide-inner max-w-6xl mx-auto px-4">
+    <div class="slide-inner max-w-6xl mx-auto px-4 md:text-center">
       <h2 class="text-2xl font-bold mb-4">Essential Qualities and Adjectives</h2>
       <div class="grid md:grid-cols-2 gap-6">
         <ul class="list-disc list-inside space-y-3">
@@ -198,10 +196,9 @@
   </section>
 
   <section
-    id="where"
     class="slide snap-start min-h-screen py-16 bg-gradient-to-br from-amber-400 to-amber-600 text-slate-900"
   >
-    <div class="slide-inner max-w-4xl mx-auto px-4">
+    <div class="slide-inner max-w-4xl mx-auto px-4 md:text-center">
       <h2 class="text-2xl font-bold mb-4">Where Software Developers Work</h2>
       <p>
         Software Developers work in diverse environments, including tech companies (Google,
@@ -217,10 +214,9 @@
   </section>
 
   <section
-    id="salary"
     class="slide snap-start min-h-screen py-16 bg-gradient-to-br from-indigo-700 to-indigo-900 text-white"
   >
-    <div class="slide-inner max-w-4xl mx-auto px-4">
+    <div class="slide-inner max-w-4xl mx-auto px-4 md:text-center">
       <h2 class="text-2xl font-bold mb-4">Salary and Career Growth</h2>
       <p>
         Entry-level Software Developers typically earn between $60,000 and $80,000 annually. With
@@ -232,10 +228,9 @@
   </section>
 
   <section
-    id="education"
     class="slide snap-start min-h-screen py-16 bg-gradient-to-br from-emerald-600 to-emerald-800 text-white"
   >
-    <div class="slide-inner max-w-4xl mx-auto px-4">
+    <div class="slide-inner max-w-4xl mx-auto px-4 md:text-center">
       <h2 class="text-2xl font-bold mb-4">Educational Path</h2>
       <ol class="list-decimal list-inside space-y-3">
         <li>Complete a degree in Computer Science, Software Engineering, or related field</li>
@@ -250,10 +245,9 @@
   </section>
 
   <section
-    id="motivation"
     class="slide snap-start min-h-screen py-16 bg-gradient-to-br from-pink-400 to-pink-600 text-slate-900"
   >
-    <div class="slide-inner max-w-4xl mx-auto px-4">
+    <div class="slide-inner max-w-4xl mx-auto px-4 md:text-center">
       <h2 class="text-2xl font-bold mb-4">Personal Motivation</h2>
       <p>
         What truly motivates me toward this career is the opportunity to create something
@@ -265,8 +259,8 @@
     </div>
   </section>
 
-  <section id="conclusion" class="slide snap-start min-h-screen py-16 bg-slate-900 text-white">
-    <div class="slide-inner max-w-4xl mx-auto px-4">
+  <section class="slide snap-start min-h-screen py-16 bg-slate-900 text-white">
+    <div class="slide-inner max-w-4xl mx-auto px-4 md:text-center">
       <h2 class="text-2xl font-bold mb-4">Conclusion</h2>
       <p>
         Becoming a Software Developer represents a career path filled with growth, innovation, and
@@ -276,16 +270,84 @@
       </p>
     </div>
   </section>
-  <!-- Mobile bottom nav: visible only on small screens -->
-  <nav class="mobile-nav md:hidden" aria-label="Slide navigation">
-    <a href="#intro" aria-label="Intro">1</a>
-    <a href="#advantages" aria-label="Advantages">2</a>
-    <a href="#disadvantages" aria-label="Disadvantages">3</a>
-    <a href="#qualities" aria-label="Qualities">4</a>
-    <a href="#where" aria-label="Where">5</a>
-    <a href="#salary" aria-label="Salary">6</a>
-    <a href="#education" aria-label="Education">7</a>
-    <a href="#motivation" aria-label="Motivation">8</a>
-    <a href="#conclusion" aria-label="Conclusion">9</a>
+  <!-- Mobile bottom nav: visible only on small screens (uses buttons to avoid adding history entries) -->
+  <nav class="mobile-nav hidden md:flex" aria-label="Slide navigation">
+    <button type="button" (click)="goToSlide(0)" aria-label="Intro">1</button>
+    <button type="button" (click)="goToSlide(1)" aria-label="Advantages">2</button>
+    <button type="button" (click)="goToSlide(2)" aria-label="Disadvantages">3</button>
+    <button type="button" (click)="goToSlide(3)" aria-label="Qualities">4</button>
+    <button type="button" (click)="goToSlide(4)" aria-label="Where">5</button>
+    <button type="button" (click)="goToSlide(5)" aria-label="Salary">6</button>
+    <button type="button" (click)="goToSlide(6)" aria-label="Education">7</button>
+    <button type="button" (click)="goToSlide(7)" aria-label="Motivation">8</button>
+    <button type="button" (click)="goToSlide(8)" aria-label="Conclusion">9</button>
   </nav>
+
+  <!-- Slide indicator (desktop) -->
+  <!-- Bottom dots for mobile: horizontal, reflect left/right scroll -->
+  <div class="dots-bottom flex md:hidden items-center justify-center gap-3" aria-hidden="true">
+    <button
+      type="button"
+      class="dot"
+      [class.active]="currentSlide() === 0"
+      (click)="goToSlide(0)"
+      aria-label="Go to slide 1"
+    ></button>
+    <button
+      type="button"
+      class="dot"
+      [class.active]="currentSlide() === 1"
+      (click)="goToSlide(1)"
+      aria-label="Go to slide 2"
+    ></button>
+    <button
+      type="button"
+      class="dot"
+      [class.active]="currentSlide() === 2"
+      (click)="goToSlide(2)"
+      aria-label="Go to slide 3"
+    ></button>
+    <button
+      type="button"
+      class="dot"
+      [class.active]="currentSlide() === 3"
+      (click)="goToSlide(3)"
+      aria-label="Go to slide 4"
+    ></button>
+    <button
+      type="button"
+      class="dot"
+      [class.active]="currentSlide() === 4"
+      (click)="goToSlide(4)"
+      aria-label="Go to slide 5"
+    ></button>
+    <button
+      type="button"
+      class="dot"
+      [class.active]="currentSlide() === 5"
+      (click)="goToSlide(5)"
+      aria-label="Go to slide 6"
+    ></button>
+    <button
+      type="button"
+      class="dot"
+      [class.active]="currentSlide() === 6"
+      (click)="goToSlide(6)"
+      aria-label="Go to slide 7"
+    ></button>
+    <button
+      type="button"
+      class="dot"
+      [class.active]="currentSlide() === 7"
+      (click)="goToSlide(7)"
+      aria-label="Go to slide 8"
+    ></button>
+    <button
+      type="button"
+      class="dot"
+      [class.active]="currentSlide() === 8"
+      (click)="goToSlide(8)"
+      aria-label="Go to slide 9"
+    ></button>
+  </div>
 </div>

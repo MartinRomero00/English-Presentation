@@ -74,7 +74,7 @@
   left: 50%;
   transform: translateX(-50%);
   bottom: 1rem;
-  display: flex;
+  display: none; /* default hidden; show on desktop via media query to respect Tailwind classes */
   gap: 0.5rem;
   background: rgba(0, 0, 0, 0.35);
   padding: 0.4rem;
@@ -96,6 +96,82 @@
   transform: translateY(1px);
 }
 
+.mobile-nav button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 36px;
+  color: white;
+  background: transparent;
+  border: none;
+  font-weight: 600;
+}
+.mobile-nav button:active {
+  transform: translateY(1px);
+}
+
+/* Slide indicator (desktop) */
+.slide-indicator {
+  position: fixed;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+}
+.indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 0;
+}
+.indicator-dot.active {
+  background: white;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08) inset;
+}
+
+/* Force-hide the right-side indicator on desktop (md and up) and only show on small screens */
+@media (min-width: 768px) {
+  .slide-indicator {
+    display: none !important;
+  }
+  /* keep mobile-nav visible on md+ (desktop) so numeric bar shows there */
+  .mobile-nav {
+    display: flex !important;
+  }
+}
+
+/* Bottom dots for mobile */
+.dots-bottom {
+  position: fixed;
+  left: 50%;
+  bottom: 0.75rem;
+  transform: translateX(-50%);
+  z-index: 70;
+  padding: 0.3rem 0.6rem;
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 9999px;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.45);
+  border: none;
+  padding: 0;
+}
+.dot.active {
+  background: white;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06) inset;
+}
+
+/* Hide the old slide-indicator entirely (we're using bottom dots on mobile) */
+.slide-indicator {
+  display: none !important;
+}
+
 /* Desktop header tweaks */
 header h1 {
   letter-spacing: -0.5px;
@@ -105,4 +181,54 @@ header h1 {
 .pill-card {
   border-radius: 0.75rem;
   padding: 0.75rem;
+}
+
+/* Text cards: add semi-opaque boxes behind text blocks for legibility */
+.slide-inner h2,
+.slide-inner h3,
+.slide-inner p,
+.slide-inner li,
+.slide-inner .prose p,
+.slide-inner ol,
+.slide-inner ul {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12) inset;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: block;
+}
+
+/* Make list items' background slightly lighter and compact */
+.slide-inner li {
+  margin-bottom: 0.6rem;
+  padding: 0.6rem 0.75rem;
+}
+
+/* Headings: slightly bolder card */
+.slide-inner h2,
+.slide-inner h3 {
+  padding: 0.9rem 1.1rem;
+  font-weight: 700;
+}
+
+/* Avoid double-boxing for aside cards that already have their own background */
+aside .bg-white\/10,
+aside .rounded-lg,
+aside .pill-card {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* Reduce padding on small screens so boxes don't crowd */
+@media (max-width: 767px) {
+  .slide-inner h2,
+  .slide-inner h3,
+  .slide-inner p,
+  .slide-inner li,
+  .slide-inner .prose p {
+    padding: 0.5rem 0.6rem;
+  }
 }
