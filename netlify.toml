@@ -1,0 +1,11 @@
+## Netlify configuration for English-Presentation
+## Builds the Angular app located in `app/` and publishes the compiled output
+[build]
+  base = "app"
+  publish = "dist/app/browser"
+  command = "npm ci && npm run build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
