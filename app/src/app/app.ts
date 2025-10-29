@@ -33,6 +33,20 @@ export class App implements AfterViewInit, OnDestroy {
     // totalSlides() during the initial render.
     Promise.resolve().then(() => {
       this.slidesLength = slides.length;
+      // Prevent browser restoring a previous scroll position on reload (when supported)
+      try {
+        if ('scrollRestoration' in history) {
+          (history as any).scrollRestoration = 'manual';
+        }
+      } catch {}
+
+      // Ensure we start on the first slide on load
+      try {
+        root.scrollTo({ left: 0, top: 0, behavior: 'auto' });
+      } catch {
+        // fallback
+        root.scrollLeft = 0;
+      }
 
       // update current slide on horizontal scroll (throttled via requestAnimationFrame)
       let raf = 0;

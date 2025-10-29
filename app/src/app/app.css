@@ -12,10 +12,10 @@
   -webkit-overflow-scrolling: touch;
 }
 
-/* Force white text as default inside the presentation so all slides read well on top of gradients */
-.presentation-root,
-.presentation-root * {
-  color: white !important;
+/* Presentation root: allow elements to inherit color so per-container colors can be set
+   (removed hard-forced white which prevented using dark text on light containers) */
+.presentation-root {
+  color: white;
 }
 
 /* A set of reusable 'random' gradient classes to give each slide a different mood.
@@ -287,12 +287,15 @@ header h1 {
 .slide-inner .prose p,
 .slide-inner ol,
 .slide-inner ul {
-  background: rgba(255, 255, 255, 0.06);
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12) inset;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  /* darker, tinted cards so text remains readable over the video background */
+  background: rgba(6, 12, 30, 0.72) !important; /* deep navy tint */
+  color: #ffffff !important;
+  padding: 0.9rem 1.1rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 12px 30px rgba(2,6,23,0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: block;
 }
 
@@ -327,4 +330,41 @@ aside .pill-card {
   .slide-inner .prose p {
     padding: 0.5rem 0.6rem;
   }
+}
+
+/* ------------------ User-requested: remove slide colors, show full opaque video ------------------ */
+/* Remove gradient backgrounds from grad-* classes so the video is visible behind slides */
+.grad-1,
+.grad-2,
+.grad-3,
+.grad-4,
+.grad-5,
+.grad-6,
+.grad-7,
+.grad-8,
+.grad-9 {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* Ensure slide base is transparent so video shows through */
+.slide {
+  background: transparent !important;
+}
+
+/* Make the background video fully opaque (do NOT make it transparent) and fixed behind content */
+.bg-loop-video {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  opacity: 1 !important; /* keep video fully opaque per user request */
+}
+
+/* Hide any overlay so the video isn't dimmed unless you want a subtle tint */
+.video-overlay {
+  display: none !important;
 }
