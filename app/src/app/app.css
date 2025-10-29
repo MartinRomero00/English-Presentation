@@ -12,6 +12,54 @@
   -webkit-overflow-scrolling: touch;
 }
 
+/* Force white text as default inside the presentation so all slides read well on top of gradients */
+.presentation-root,
+.presentation-root * {
+  color: white !important;
+}
+
+/* A set of reusable 'random' gradient classes to give each slide a different mood.
+   These use linear and radial gradients with varied angles and color stops to create
+   more interesting, less uniform backgrounds while keeping good contrast for white text. */
+.grad-1 {
+  background-image: linear-gradient(135deg, #7c3aed 0%, #ec4899 45%, #06b6d4 100%);
+}
+.grad-2 {
+  background-image: linear-gradient(220deg, #0ea5e9 0%, #06b6d4 35%, #4ade80 100%);
+}
+.grad-3 {
+  background-image: radial-gradient(
+      circle at 30% 20%,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(0, 0, 0, 0) 25%
+    ),
+    linear-gradient(160deg, #ef4444 0%, #fb7185 50%, #f97316 100%);
+}
+.grad-4 {
+  background-image: linear-gradient(45deg, #0f172a 0%, #0369a1 35%, #7c3aed 100%);
+}
+.grad-5 {
+  background-image: radial-gradient(circle at center, #334155 0%, #0ea5e9 30%, #8b5cf6 100%);
+}
+.grad-6 {
+  background-image: linear-gradient(200deg, #831843 0%, #ec4899 40%, #f59e0b 100%);
+}
+.grad-7 {
+  background-image: linear-gradient(90deg, #111827 0%, #0ea5e9 25%, #22c55e 75%, #84cc16 100%);
+}
+.grad-8 {
+  background-image: radial-gradient(circle at 70% 30%, #7c3aed 0%, #ef4444 40%, #06b6d4 100%);
+}
+.grad-9 {
+  background-image: linear-gradient(315deg, #111827 0%, #475569 30%, #06b6d4 70%, #7c3aed 100%);
+}
+
+/* Ensure the gradient covers the slide and preserves sizing */
+.slide {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 /* Hide native horizontal scrollbar but keep scroll functionality */
 .presentation-root {
   -ms-overflow-style: none; /* IE and Edge */
@@ -46,11 +94,17 @@
 /* Mobile tweaks: make inner padding a bit smaller so text wraps nicely */
 @media (max-width: 767px) {
   .slide .slide-inner {
-    padding: 1.25rem 1rem 3rem;
+    /* start content near the top but leave a small gap for breathing room */
+    padding: 0.75rem 1rem 3rem;
   }
-  /* ensure slides don't force extra horizontal overflow on small screens */
+  /* ensure slides don't force extra horizontal overflow on small screens and
+     make vertical flow start at the top */
   .slide {
     min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
   }
 }
 
@@ -130,6 +184,48 @@
 .indicator-dot.active {
   background: white;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08) inset;
+}
+
+/* Desktop counter and desktop-dots styling */
+.slide-count {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Desktop vertical dots: larger, more visible */
+.desktop-dots .indicator-dot {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.55);
+  border: none;
+}
+.desktop-dots .indicator-dot.active {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(240, 240, 255, 0.9));
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* Make sure mobile bottom dots remain visible only on small screens */
+@media (min-width: 768px) {
+  .dots-bottom {
+    display: none !important;
+  }
+  .desktop-dots {
+    display: flex !important;
+  }
+  .slide-count {
+    display: flex !important;
+  }
+}
+
+/* Mobile counter styling (visible on small screens only) */
+.mobile-count {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Ensure desktop dot selector is not visible (removed) */
+.desktop-dots {
+  display: none !important;
 }
 
 /* Force-hide the right-side indicator on desktop (md and up) and only show on small screens */

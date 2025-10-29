@@ -1,14 +1,21 @@
 <!-- Presentation layout for "My Dream Job: Software Developer" -->
-<div #presentationRoot class="presentation-root bg-white text-slate-900">
-  <!-- Slides: each section is a horizontal slide. Header removed per request. -->
-  <section
-    class="slide snap-start min-h-screen grid md:grid-cols-3 gap-8 items-start bg-gradient-to-br from-indigo-600 to-indigo-800 text-white py-16"
+<div #presentationRoot class="presentation-root text-white">
+  <!-- Desktop slide counter (top-left) -->
+  <div
+    class="slide-count hidden md:flex items-center gap-2 fixed left-4 top-4 z-60 bg-white/10 text-white px-3 py-1 rounded-full backdrop-blur-sm"
+    aria-hidden="true"
   >
+    <span class="text-sm font-semibold">{{ currentSlide() + 1 }} / {{ totalSlides() }}</span>
+  </div>
+
+  <!-- Desktop vertical dots removed per request (we keep the desktop counter only) -->
+  <!-- Slides: each section is a horizontal slide. Header removed per request. -->
+  <section class="slide snap-start min-h-screen grid md:grid-cols-3 gap-8 items-start grad-1 py-16">
     <div
       class="slide-inner max-w-6xl mx-auto px-4 md:grid md:grid-cols-3 gap-8 items-start md:text-center"
     >
       <div class="md:col-span-2">
-        <h2 class="text-2xl md:text-3xl font-bold mb-4">Introduction</h2>
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">Introduction 👋</h2>
         <p class="leading-relaxed mb-4">
           My dream job is to become a <strong class="font-semibold">Software Developer</strong>. I
           have always been fascinated by technology and how applications work behind the scenes.
@@ -16,7 +23,7 @@
           continuous learning that excites me the most.
         </p>
 
-        <h3 class="text-xl font-semibold mt-6 mb-2">The Job I Chose</h3>
+        <h3 class="text-xl font-semibold mt-6 mb-2">The Job I Chose 💼</h3>
         <p class="leading-relaxed mb-4">
           A Software Developer is a professional who designs, builds, and maintains computer
           applications and software systems. Software Developers write code using different
@@ -31,7 +38,7 @@
           improving existing software to meet user needs.
         </p>
 
-        <h3 class="text-xl font-semibold mt-6 mb-2">Why Would I Be Good at This Job?</h3>
+        <h3 class="text-xl font-semibold mt-6 mb-2">Why Would I Be Good at This Job? ✨</h3>
         <div class="prose">
           <p>
             <strong>First</strong>, I have a natural aptitude for logical thinking and
@@ -82,11 +89,9 @@
     </div>
   </section>
 
-  <section
-    class="slide snap-start min-h-screen py-16 bg-gradient-to-br from-emerald-500 to-emerald-700 text-white"
-  >
+  <section class="slide snap-start min-h-screen py-16 grad-2">
     <div class="slide-inner max-w-6xl mx-auto px-4 md:text-center">
-      <h2 class="text-2xl font-bold mb-6">Advantages of This Career</h2>
+      <h2 class="text-2xl font-bold mb-6">Advantages of This Career 🚀</h2>
       <ul class="grid md:grid-cols-2 gap-6 text-white">
         <li class="bg-white/10 p-6 rounded-lg shadow-lg">
           <strong>High Demand</strong>: Technology companies constantly need skilled developers,
@@ -116,11 +121,9 @@
     </div>
   </section>
 
-  <section
-    class="slide snap-start min-h-screen py-16 bg-gradient-to-br from-rose-500 to-rose-700 text-white"
-  >
+  <section class="slide snap-start min-h-screen py-16 grad-3">
     <div class="slide-inner max-w-4xl mx-auto px-4 md:text-center">
-      <h2 class="text-2xl font-bold mb-4">Disadvantages of This Career</h2>
+      <h2 class="text-2xl font-bold mb-4">Disadvantages of This Career ⚠️</h2>
       <ul class="list-disc list-inside space-y-4">
         <li>
           <strong>High Stress</strong>: Tight deadlines, debugging critical errors, and the pressure
@@ -150,11 +153,9 @@
     </div>
   </section>
 
-  <section
-    class="slide snap-start min-h-screen py-16 bg-gradient-to-br from-teal-400 to-teal-600 text-slate-900"
-  >
+  <section class="slide snap-start min-h-screen py-16 grad-4">
     <div class="slide-inner max-w-6xl mx-auto px-4 md:text-center">
-      <h2 class="text-2xl font-bold mb-4">Essential Qualities and Adjectives</h2>
+      <h2 class="text-2xl font-bold mb-4">Essential Qualities and Adjectives ✨</h2>
       <div class="grid md:grid-cols-2 gap-6">
         <ul class="list-disc list-inside space-y-3">
           <li>
@@ -195,29 +196,25 @@
     </div>
   </section>
 
-  <section
-    class="slide snap-start min-h-screen py-16 bg-gradient-to-br from-amber-400 to-amber-600 text-slate-900"
-  >
+  <section class="slide snap-start min-h-screen py-16 grad-5">
     <div class="slide-inner max-w-4xl mx-auto px-4 md:text-center">
-      <h2 class="text-2xl font-bold mb-4">Where Software Developers Work</h2>
+      <h2 class="text-2xl font-bold mb-4">Where Software Developers Work 🌍</h2>
       <p>
         Software Developers work in diverse environments, including tech companies (Google,
         Microsoft, Apple, Amazon), startups, financial institutions, healthcare organizations,
         entertainment companies, remote settings, and hybrid environments.
       </p>
       <div
-        class="mt-6 w-full aspect-[16/6] bg-white/30 rounded-md flex items-center justify-center text-slate-800"
+        class="mt-6 w-full aspect-[16/6] bg-white/20 rounded-md flex items-center justify-center text-white/80"
       >
         Image placeholder (search: "software development office" / "remote developer workspace")
       </div>
     </div>
   </section>
 
-  <section
-    class="slide snap-start min-h-screen py-16 bg-gradient-to-br from-indigo-700 to-indigo-900 text-white"
-  >
+  <section class="slide snap-start min-h-screen py-16 grad-6">
     <div class="slide-inner max-w-4xl mx-auto px-4 md:text-center">
-      <h2 class="text-2xl font-bold mb-4">Salary and Career Growth</h2>
+      <h2 class="text-2xl font-bold mb-4">Salary and Career Growth 💰</h2>
       <p>
         Entry-level Software Developers typically earn between $60,000 and $80,000 annually. With
         experience, salaries can reach $100,000 to $150,000 or more. Senior Developers, Architects,
@@ -227,11 +224,9 @@
     </div>
   </section>
 
-  <section
-    class="slide snap-start min-h-screen py-16 bg-gradient-to-br from-emerald-600 to-emerald-800 text-white"
-  >
+  <section class="slide snap-start min-h-screen py-16 grad-7">
     <div class="slide-inner max-w-4xl mx-auto px-4 md:text-center">
-      <h2 class="text-2xl font-bold mb-4">Educational Path</h2>
+      <h2 class="text-2xl font-bold mb-4">Educational Path 🎓</h2>
       <ol class="list-decimal list-inside space-y-3">
         <li>Complete a degree in Computer Science, Software Engineering, or related field</li>
         <li>Learn multiple programming languages (Python, Java, JavaScript, C++, etc.)</li>
@@ -244,11 +239,9 @@
     </div>
   </section>
 
-  <section
-    class="slide snap-start min-h-screen py-16 bg-gradient-to-br from-pink-400 to-pink-600 text-slate-900"
-  >
+  <section class="slide snap-start min-h-screen py-16 grad-8">
     <div class="slide-inner max-w-4xl mx-auto px-4 md:text-center">
-      <h2 class="text-2xl font-bold mb-4">Personal Motivation</h2>
+      <h2 class="text-2xl font-bold mb-4">Personal Motivation ❤️</h2>
       <p>
         What truly motivates me toward this career is the opportunity to create something
         meaningful. Every application, website, or software system I develop could help people solve
@@ -259,7 +252,7 @@
     </div>
   </section>
 
-  <section class="slide snap-start min-h-screen py-16 bg-slate-900 text-white">
+  <section class="slide snap-start min-h-screen py-16 grad-9">
     <div class="slide-inner max-w-4xl mx-auto px-4 md:text-center">
       <h2 class="text-2xl font-bold mb-4">Conclusion</h2>
       <p>
@@ -349,5 +342,12 @@
       (click)="goToSlide(8)"
       aria-label="Go to slide 9"
     ></button>
+  </div>
+  <!-- Mobile slide counter (top-center) -->
+  <div
+    class="mobile-count flex md:hidden items-center justify-center fixed left-1/2 transform -translate-x-1/2 top-4 z-60 bg-white/10 text-white px-3 py-1 rounded-full backdrop-blur-sm"
+    aria-hidden="true"
+  >
+    <span class="text-sm font-semibold">{{ currentSlide() + 1 }} / {{ totalSlides() }}</span>
   </div>
 </div>
