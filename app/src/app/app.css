@@ -15,7 +15,53 @@
 /* Presentation root: allow elements to inherit color so per-container colors can be set
    (removed hard-forced white which prevented using dark text on light containers) */
 .presentation-root {
-  color: white;
+  /* allow slides to control their own text color (don't force white globally) */
+  color: inherit;
+}
+
+/* Hide the browser scrollbar visually but keep scrolling functional.
+   This hides the vertical scrollbar on most browsers while preserving scroll behavior
+   inside slides (which still use overflow-y:auto). */
+html,
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+/* Specifically hide scrollbars inside the presentation container and slides
+   to avoid visible scroll on slide 1 in desktop browsers while keeping scroll
+   functional. */
+.presentation-root,
+.slide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.presentation-root::-webkit-scrollbar,
+.slide::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  display: none !important;
+}
+
+/* Extra: hide scrollbars for WebKit across all elements (helps desktop Chrome/Edge)
+   while keeping scrolling functional. */
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+*::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+*::-webkit-scrollbar-thumb {
+  background: transparent !important;
+  border: none !important;
 }
 
 /* A set of reusable 'random' gradient classes to give each slide a different mood.
@@ -58,6 +104,9 @@
 .slide {
   background-size: cover;
   background-repeat: no-repeat;
+  /* ensure each slide sits above the background video without a global child selector */
+  position: relative;
+  z-index: 1;
 }
 
 /* Hide native horizontal scrollbar but keep scroll functionality */
@@ -89,6 +138,24 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2.5rem 1rem 2rem; /* less top padding (header removed) */
+}
+
+/* Slide 1: center layout and constrain text-card width for better balance */
+.slide:first-of-type .slide-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.slide:first-of-type .slide-inner h2,
+.slide:first-of-type .slide-inner h3,
+.slide:first-of-type .slide-inner p,
+.slide:first-of-type .slide-inner .prose,
+.slide:first-of-type .slide-inner li {
+  max-width: 900px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Mobile tweaks: make inner padding a bit smaller so text wraps nicely */
@@ -279,7 +346,8 @@ header h1 {
   padding: 0.75rem;
 }
 
-/* Text cards: add semi-opaque boxes behind text blocks for legibility */
+/* Text cards: add light, high-contrast boxes behind text blocks so they remain visible
+   without changing stacking or z-index rules. Using a creamy off-white with dark text. */
 .slide-inner h2,
 .slide-inner h3,
 .slide-inner p,
@@ -287,15 +355,21 @@ header h1 {
 .slide-inner .prose p,
 .slide-inner ol,
 .slide-inner ul {
-  /* darker, tinted cards so text remains readable over the video background */
-  background: rgba(6, 12, 30, 0.72) !important; /* deep navy tint */
-  color: #ffffff !important;
-  padding: 0.9rem 1.1rem;
+  /* Tech / programming theme: dark translucent cards with mint-cyan text and
+     subtle neon-cyan border. Keeps a coding aesthetic while remaining readable
+     over the blue video background. */
+  /* Mid-tone Tech: medium slate-blue/gray that's not too dark or too light */
+  /* Non-blue mid-tone (copper/bronze) with same transparency so it doesn't blend
+      into the blue background but keeps similar visual weight. */
+  background: rgba(15, 23, 42, 0.85) !important; /* user-requested darker navy with translucency */
+  color: #f1f5f9 !important; /* keep light text for contrast */
+  padding: 0.72rem 0.96rem;
+  margin-bottom: 0.9rem; /* space between stacked cards */
   border-radius: 0.6rem;
-  border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 12px 30px rgba(2,6,23,0.5);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(100, 255, 218, 0.2); /* user-requested border */
+  box-shadow: 0 8px 18px rgba(6, 12, 20, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   display: block;
 }
 
@@ -315,10 +389,18 @@ header h1 {
 /* Avoid double-boxing for aside cards that already have their own background */
 aside .bg-white\/10,
 aside .rounded-lg,
+aside .pill-card aside .bg-white\/10,
+aside .rounded-lg,
 aside .pill-card {
-  background: transparent !important;
-  box-shadow: none !important;
-  padding: 0 !important;
+  background: rgba(15, 23, 42, 0.85) !important; /* user-requested darker navy with translucency */
+  color: #f1f5f9 !important;
+  border: 1px solid rgba(100, 255, 218, 0.2) !important; /* user-requested border */
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 14px rgba(6, 12, 20, 0.28) !important;
+  padding: 0.72rem !important;
+  border-radius: 0.6rem !important;
+  margin-bottom: 0.9rem !important;
 }
 
 /* Reduce padding on small screens so boxes don't crowd */
@@ -359,7 +441,8 @@ aside .pill-card {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  z-index: 0 !important;
+  /* place the video behind everything using a negative z-index so no complex selectors are required */
+  z-index: -1 !important;
   pointer-events: none !important;
   opacity: 1 !important; /* keep video fully opaque per user request */
 }
